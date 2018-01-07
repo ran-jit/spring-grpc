@@ -41,3 +41,22 @@ The abstract protocol defined above is implemented over HTTP/2. gRPC bidirection
 ### Flow Control
 
 gRPC inherits the flow control mechanisms in HTTP/2 and uses them to enable fine-grained control of the amount of memory used for buffering in-flight messages.
+
+## Rest Vs GRPC
+
+The transport layer works using HTTP/2 on top of TCP/IP. It allows for lower latency (faster) connections that can take advantage of a single connection from client to server (which makes more efficient use of connection and can result in more efficient use of server resources.
+
+HTTP/2 also supports bidirectional connectivity and asynchronous connectivity. So it is possible for the server to efficiently make contact with client to send messages (async response/notifications, etc..)
+
+While, both REST and gRPC can generate client/server stubs (using something like swagger for REST), REST has a limited set of primary 'function' calls (or verbs):
+
+     * GET     --> Read
+     * PUT     --> Update/Replace
+     * POST    --> Create/Insert
+     * DELETE  --> Delete
+
+whereas gRPC you can define any kind of function calls including synchronous/asynchronous, uni-direction/bidirectional(streams), etc..
+
+Using gRPC the client makes a call to a local method. To the programmer, it looks like you're making a local call, but the underlying layer (the auto-generated client stub) sends the call to the server. To the server it looks like it's method was called locally.
+
+gRPC takes care of all the underlying plumbing and simplifies the programming paradigm. However, to some dedicated REST purists, this may seem like an over-complication
