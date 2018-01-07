@@ -4,6 +4,8 @@
 
 Remote Procedure Calls (RPCs) provide a useful abstraction for building distributed applications and services. The libraries in this repository provide a concrete implementation of the gRPC protocol, layered over HTTP/2. These libraries enable communication between clients and servers using any combination of the supported languages.
 
+more details.. https://grpc.io
+
 ### Interface
 
 Developers using gRPC typically start with the description of an RPC service (a collection of methods), and generate client and server side interfaces which they use on the client-side and implement on the server side.
