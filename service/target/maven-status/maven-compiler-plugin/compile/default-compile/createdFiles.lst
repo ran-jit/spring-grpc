@@ -1,0 +1,10 @@
+spring/grpc/manager/impl/ManagerImpl.class
+spring/grpc/service/rest/RestService.class
+spring/grpc/exception/ExceptionHandler$Error$ErrorBuilder.class
+spring/grpc/exception/StatusCode.class
+spring/grpc/exception/CustomException.class
+spring/grpc/exception/ExceptionHandler$Error.class
+spring/grpc/statuscode/CustomStatusCode.class
+spring/grpc/exception/ExceptionHandler.class
+spring/grpc/manager/Manager.class
+spring/grpc/service/grpc/GrpcService.class

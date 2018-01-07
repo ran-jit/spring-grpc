@@ -1,0 +1,21 @@
+// Created by Ranjith @ 2 Jan' 2018
+syntax = "proto3";
+
+package com.noticeboard.audit.service.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.noticeboard.audit.service.grpc";
+option java_outer_classname = "DashboardServiceProto";
+
+service TestService {
+    rpc getInactiveMembers (Request) returns (Response);
+}
+
+message Request {
+    int64 id = 1;
+    string name = 2;
+}
+
+message Response {
+    bool success = 1;
+}

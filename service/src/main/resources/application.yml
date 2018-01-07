@@ -1,0 +1,22 @@
+project:
+  name: Spring-Grpc
+  version: 1.0-SNAPSHOT
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+
+
+#-- Tomcat server configuration
+server:
+  port: 8000
+  tomcat:
+    max-threads: 1024
+    uri-encoding: UTF-8
+
+#-- GRPC configuration
+grpc:
+  server:
+    port: 8500

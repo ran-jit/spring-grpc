@@ -1,0 +1,6 @@
+spring/grpc/response/Response$ResponseBuilder.class
+spring/grpc/client/RestClient.class
+spring/grpc/response/Response.class
+spring/grpc/entry/Entry.class
+spring/grpc/entry/Entry$EntryBuilder.class
+spring/grpc/client/GrpcClient.class
