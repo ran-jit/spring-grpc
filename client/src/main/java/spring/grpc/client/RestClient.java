@@ -42,9 +42,9 @@ public class RestClient {
             RestTemplate restTemplate = new RestTemplate(Lists.newArrayList(new MappingJackson2HttpMessageConverter()));
             restTemplate.exchange(endpoint.concat("/test"), HttpMethod.POST, getClientHeaders(entry), Response.class);
         } catch (ResourceAccessException ex) {
-            //LOGGER.error("Error, entry: {} :: message: {}", entry, ex.getMessage());
+            ex.printStackTrace();
         } catch (Exception ex) {
-            //LOGGER.error("Error, entry: {}", entry, ex);
+            ex.printStackTrace();
         }
     }
 

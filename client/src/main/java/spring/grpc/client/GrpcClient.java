@@ -14,23 +14,29 @@ import spring.grpc.entry.Entry;
  */
 public class GrpcClient {
 
-    private String hostAndPort;
+    private ManagedChannel channel;
 
     public GrpcClient(String hostAndPort) {
-        this.hostAndPort = hostAndPort;
+        this.channel = getGrpcChannel(hostAndPort);
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                shutdown();
+            }
+        });
     }
 
-    private ManagedChannel getGrpcChannel() {
-        HostAndPort hp = HostAndPort.fromString(this.hostAndPort);
+    private ManagedChannel getGrpcChannel(String hostAndPort) {
+        HostAndPort hp = HostAndPort.fromString(hostAndPort);
         return ManagedChannelBuilder.forAddress(hp.getHost(), hp.getPort())
                 .usePlaintext(true)
                 .build();
     }
 
-    private void shutdown(ManagedChannel channel) {
-        if (channel != null) {
+    private void shutdown() {
+        if (this.channel != null) {
             try {
-                channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+                this.channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
             } catch (InterruptedException ex) {
                 // ignore
             }
@@ -38,21 +44,16 @@ public class GrpcClient {
     }
 
     public void test(Entry entry) {
-        ManagedChannel channel = null;
         try {
-            channel = getGrpcChannel();
             TestServiceGrpc.newBlockingStub(channel)
                     .getInactiveMembers(Request.newBuilder()
                             .setId((entry.getId() == null) ? -1 : entry.getId())
                             .setName(entry.getName())
                             .build());
-
         } catch (StatusRuntimeException ex) {
-            //LOGGER.error("Error, entry: {} :: message: {}", entry, ex.getMessage());
+            ex.printStackTrace();
         } catch (Exception ex) {
-            //LOGGER.error("Error, entry: {}", entry, ex);
-        } finally {
-            shutdown(channel);
+            ex.printStackTrace();
         }
     }
 

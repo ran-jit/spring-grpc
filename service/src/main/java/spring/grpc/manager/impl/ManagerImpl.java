@@ -1,5 +1,6 @@
 package spring.grpc.manager.impl;
 
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 import spring.grpc.entry.Entry;
 import spring.grpc.exception.CustomException;
@@ -17,8 +18,7 @@ public class ManagerImpl implements Manager {
         if (entry == null) {
             throw new CustomException(CustomStatusCode.NULL_ENTRY);
         }
-
-        entry.setId(1L);
+        entry.setId(UUID.randomUUID());
         return entry;
     }
 
