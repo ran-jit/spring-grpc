@@ -32,11 +32,6 @@
             <!--scope should be provided as we do not want Lombok jar file to be included in our build-->
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>23.3-jre</version>
-        </dependency>
     </dependencies>
 
     <build>
