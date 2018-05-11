@@ -4,8 +4,8 @@ syntax = "proto3";
 package com.noticeboard.audit.service.grpc;
 
 option java_multiple_files = true;
-option java_package = "com.noticeboard.audit.service.grpc";
-option java_outer_classname = "DashboardServiceProto";
+option java_package = "spring.grpc.service.grpc";
+option java_outer_classname = "TestServiceProto";
 
 service TestService {
     rpc getInactiveMembers (Request) returns (Response);
